@@ -2,11 +2,9 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-using namespace std;
 
-
-bool readFile(string path, char *s) {
-	ifstream ifs(path);
+bool readFile(std::string path, char *s) {
+	std::ifstream ifs(path);
 	if (ifs.fail()) return false;
 	char ch;
 	int i = 0;
@@ -64,7 +62,7 @@ void removeSpaces(char *str)
 	strcpy(str, s);//копируем строку обратно
 	free(s);//освобождение памяти
 }
-string setCaseToFirstLetter(string str)
+std::string setCaseToFirstLetter(std::string str)
 {//замена первой буквы на заглавную
 	int len = str.length();
 	bool bFirstLetter = true;
@@ -141,11 +139,12 @@ void saveFile(char name[], char str[])
 }
 int main()
 {
+	
 	setlocale(LC_ALL, "RU");
 	char *str = new char[1000];
 	readFile("input.txt", str);
-	cout << "Текст из файла:\n";
-	cout << str << endl;
+	std::cout << "Текст из файла:\n";
+	std::cout << str << std::endl;
 	std::string s = str;
 	//перевод строки в нижний регистр
 	s = toLowerCase(s);
@@ -163,9 +162,9 @@ int main()
 
 	strcpy(str, s.c_str());
 	saveFile("output.txt", str);//запись строки в файл
-	cout << "\nТекст после изменений:\n";
-	cout << str << endl;
+	std::cout << "\nТекст после изменений:\n";
+	std::cout << str << std::endl;
 
-	cout << endl;
+	std::cout << std::endl;
 	system("pause");
 }
